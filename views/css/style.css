@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100&family=Zen+Kaku+Gothic+New:wght@300&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Heebo', sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.header {
+    margin: 0 auto 1rem;
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.header .logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-left: -5px;
+    flex-shrink: 0;
+}
+
+.header a {
+    border-bottom: none;
+    position: relative;
+    padding: 0.5rem 0 0.25rem;
+}
+
+.row {
+    display: -ms-flexbox;
+    /* IE10 */
+    display: flex;
+    -ms-flex-wrap: wrap;
+    /* IE10 */
+    flex-wrap: wrap;
+    padding: 0 50px;
+}
+
+.menu::before {
+    content: "";
+    position: fixed;
+    z-index: 1;
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.menu_list {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    max-width: 20rem;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    margin: 0;
+    background-color: #f7f2f2;
+    padding-top: 60px;
+    visibility: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+}
+
+.menu_list_inner {
+    list-style: none;
+    display: flex;
+    flex-direction: inherit;
+}
+
+.has-open-menu .menu::before {
+    visibility: visible;
+    opacity: 1;
+}
+
+.has-open-menu .menu_list {
+    transform: translateX(0);
+    visibility: visible;
+}
+
+.menu_button--close {
+    position: absolute;
+    top: 1rem;
+    right: 1.75rem;
+    font-size: 2.5rem;
+}
+
+.menu_button--open {
+    font-size: 2rem;
+}
+
+.menu_item {
+    padding: 0.7rem 0;
+}
+
+a {
+    color: #5f5f5f;
+    margin: 0 0.75rem;
+    text-decoration: none;
+    transition: border-bottom-color 0.3s ease-out;
+}
+
+a:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+button {
+    background: none;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    line-height: normal;
+    overflow: visible;
+    padding: 0;
+}
+
+.lightbox {
+    /* (A1) COVERS FULLSCREEN */
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    /* (A2) BACKGROUND */
+    background: white;
+
+    /* (A3) CENTER IMAGE ON SCREEN */
+    display: flex;
+
+    /* (A4) HIDDEN BY DEFAULT */
+    visibility: hidden;
+    opacity: 0;
+
+    /* (A5) SHOW/HIDE ANIMATION */
+    transition: opacity ease 0.4s;
+}
+
+/* (A6) TOGGLE VISIBILITY */
+.lightbox.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.image {
+    width:100%;
+    cursor: zoom-in;
+}
+
+/* (B) LIGHTBOX IMAGE */
+.lightbox .image {
+    /* (B1) DIMENSIONS */
+    cursor: zoom-out;
+    background-position: center center;
+    height: 85vh;
+    position: relative;
+    top: 50%;
+    margin-left: 50%;
+    transform: translate(-50%, -50%);
+    /* (B2) IMAGE FIT */
+    /* contain | cover | fill | scale-down */
+    object-fit: contain;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+    -ms-flex: 25%;
+    /* IE10 */
+    flex: 25%;
+    max-width: 25%;
+    padding: 0 4px;
+}
+
+.column img {
+    margin-top: 8px;
+    vertical-align: middle;
+    width: 100%;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+    .column {
+        -ms-flex: 50%;
+        flex: 50%;
+        max-width: 50%;
+    }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .column {
+        -ms-flex: 100%;
+        flex: 100%;
+        max-width: 100%;
+    }
+}
+
+@media screen and (min-width: 57rem) {
+    .menu_list {
+        z-index: 900;
+        max-width: 100%;
+        height: auto;
+        transform: translateX(0);
+        visibility: visible;
+        position: absolute;
+        left: 200px;
+        background-color: transparent;
+        flex-wrap: wrap;
+        flex-direction: row;
+        padding-top: 0;
+    }
+
+    .has-open-menu .menu::before {
+        display: none;
+    }
+
+    .has-open-menu .menu_list {
+        transform: translateX(0);
+        visibility: visible;
+    }
+
+    .menu_button {
+        display: none;
+    }
+
+    .header {
+        padding: 0;
+        margin: 20px 40px;
+        font-size: 1.15rem;
+    }
+
+    .header .logo {
+        font-size: 1.5rem;
+        left: 15px;
+        margin-bottom: 0;
+    }
+}
